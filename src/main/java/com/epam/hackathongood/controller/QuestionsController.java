@@ -22,6 +22,8 @@ public class QuestionsController {
 	@RequestMapping(value="/getAllQuestions",method = RequestMethod.GET)
     public List<QuestionsWrapper> getAllQuestions(HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
 		return questionsService.getAllQuestions();
     }
 }

@@ -22,11 +22,15 @@ public class ProfilesController {
 	@RequestMapping(value="/getProfiles",method = RequestMethod.GET)
     public List<Map<String, Object>> getProfiles(HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
 		return profilesService.getProfiles();
     }
 	@RequestMapping(value="/getProfilesById",method = RequestMethod.GET)
     public List<Map<String, Object>> getProfiles(@RequestParam(required=false) String profileId,HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
 		return profilesService.getProfiles(profileId);
     }
 }
