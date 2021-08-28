@@ -4,6 +4,8 @@ package com.epam.hackathongood.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,22 +25,26 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value="/createUser",method = RequestMethod.POST, consumes="application/json")
-    public Map<String,Object> createUser(@RequestBody UserInfo user){
+    public Map<String,Object> createUser(@RequestBody UserInfo user,HttpServletResponse response){
+    	response.setHeader("Access-Control-Allow-Origin", "*");
         return userService.createUser(user);
     }
 
     @RequestMapping(value="/updateUser/{id}",method = RequestMethod.PUT, consumes="application/json")
-    public void updateUser(@PathVariable("id") String user_id, @RequestParam("nickName") String nickName){
+    public void updateUser(@PathVariable("id") String user_id, @RequestParam("nickName") String nickName,HttpServletResponse response){
+    	response.setHeader("Access-Control-Allow-Origin", "*");
         userService.updateUser(user_id,nickName);
     }
 
     @RequestMapping(value="/getUser",method = RequestMethod.POST, consumes="application/json")
-    public List<Map<String, Object>> getUser(@RequestBody UserInfo user){
+    public List<Map<String, Object>> getUser(@RequestBody UserInfo user,HttpServletResponse response){
+    	response.setHeader("Access-Control-Allow-Origin", "*");
         return userService.getUser(user);
     }
 
     @RequestMapping(value="/deleteUserByUserId/{id}",method = RequestMethod.DELETE, consumes="application/json")
-    public void deleteUserByUserId(@PathVariable("id")  Integer id){
+    public void deleteUserByUserId(@PathVariable("id")  Integer id,HttpServletResponse response){
+    	response.setHeader("Access-Control-Allow-Origin", "*");
         userService.deleteUserByUserId(id);
     }
 }
