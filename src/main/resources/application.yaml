@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:8080} 
+spring:
+  datasource:
+    url: jdbc:mysql://hackforgood-db.cz7eiuv5pbz0.ap-southeast-1.rds.amazonaws.com:3306/hackforgood_development
+    username: hackforgooduser
+    password: hellohackathon
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
