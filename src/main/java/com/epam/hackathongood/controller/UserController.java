@@ -27,24 +27,32 @@ public class UserController {
     @RequestMapping(value="/createUser",method = RequestMethod.POST, consumes="application/json")
     public Map<String,Object> createUser(@RequestBody UserInfo user,HttpServletResponse response){
     	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
         return userService.createUser(user);
     }
 
     @RequestMapping(value="/updateUser/{id}",method = RequestMethod.PUT, consumes="application/json")
     public void updateUser(@PathVariable("id") String user_id, @RequestParam("nickName") String nickName,HttpServletResponse response){
     	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
         userService.updateUser(user_id,nickName);
     }
 
     @RequestMapping(value="/getUser",method = RequestMethod.POST, consumes="application/json")
     public List<Map<String, Object>> getUser(@RequestBody UserInfo user,HttpServletResponse response){
     	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
         return userService.getUser(user);
     }
 
     @RequestMapping(value="/deleteUserByUserId/{id}",method = RequestMethod.DELETE, consumes="application/json")
     public void deleteUserByUserId(@PathVariable("id")  Integer id,HttpServletResponse response){
     	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
         userService.deleteUserByUserId(id);
     }
 }
