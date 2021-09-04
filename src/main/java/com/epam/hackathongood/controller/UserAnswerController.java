@@ -1,11 +1,8 @@
 package com.epam.hackathongood.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +21,8 @@ public class UserAnswerController {
     private UserAnswerService userAnswerService;
 	
 	@RequestMapping(value="/answerQuestions",method = RequestMethod.POST, consumes="application/json")
-    public Map<String,String> getAllQuestions(@RequestBody List<UserAnswer> listUserAnswer,HttpServletResponse response){
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
+    public Map<String,String> getAllQuestions(@RequestBody List<UserAnswer> listUserAnswer){
+		
 		Map<String,String> map = new HashMap<String,String>();
 		List<UserAnswer> listAnswerQuestions = userAnswerService.answerQuestion(listUserAnswer);
 		if(listAnswerQuestions != null && listAnswerQuestions.size() > 0) {
@@ -39,10 +34,7 @@ public class UserAnswerController {
     }
 	
 	@RequestMapping(value="/userProfiles",method = RequestMethod.GET)
-    public Map<String,Object> getUserProfiles(@RequestParam(required=false) String userId,HttpServletResponse response){
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
+    public Map<String,Object> getUserProfiles(@RequestParam(required=false) String userId){
 		return userAnswerService.getUserProfiles(userId);
     }
 }

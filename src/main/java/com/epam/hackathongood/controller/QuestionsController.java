@@ -2,7 +2,6 @@ package com.epam.hackathongood.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +19,7 @@ public class QuestionsController {
     private QuestionsService questionsService;
 	
 	@RequestMapping(value="/getAllQuestions",method = RequestMethod.GET)
-    public List<QuestionsWrapper> getAllQuestions(HttpServletResponse response){
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,SessionToken,X-TOKEN");
+    public List<QuestionsWrapper> getAllQuestions(){
 		return questionsService.getAllQuestions();
     }
 }
