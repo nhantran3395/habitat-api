@@ -22,23 +22,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="/createUser",method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value="/create",method = RequestMethod.POST, consumes="application/json")
     public Map<String,Object> createUser(@RequestBody UserInfo user){
         return userService.createUser(user);
     }
 
-    @RequestMapping(value="/updateUser/{id}",method = RequestMethod.PUT, consumes="application/json")
-    public void updateUser(@PathVariable("id") String user_id, @RequestParam("nickName") String nickName){
-        userService.updateUser(user_id,nickName);
+    @RequestMapping(value="/update",method = RequestMethod.PUT, consumes="application/json")
+    public int updateUser(@RequestBody UserInfo user){
+        return userService.updateUser(user);
     }
 
-    @RequestMapping(value="/getUser",method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value="/get",method = RequestMethod.POST, consumes="application/json")
     public List<Map<String, Object>> getUser(@RequestBody UserInfo user){
         return userService.getUser(user);
     }
 
-    @RequestMapping(value="/deleteUserByUserId/{id}",method = RequestMethod.DELETE, consumes="application/json")
-    public void deleteUserByUserId(@PathVariable("id")  Integer id){
-        userService.deleteUserByUserId(id);
+    @RequestMapping(value="/delete",method = RequestMethod.PUT, consumes="application/json")
+    public int deleteUserByUserId(@RequestParam String id){
+        return userService.deleteUserByUserId(id);
     }
 }
