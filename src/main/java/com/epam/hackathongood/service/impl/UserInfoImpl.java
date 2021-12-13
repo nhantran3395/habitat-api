@@ -66,12 +66,34 @@ public class UserInfoImpl implements UseInfoMapper {
     }
 
     @Override
-    public void updateUser(String user_id, String nickName) {
-        jdbcTemplate.update("UPDATE hackforgood_development.user SET nickname = ? WHERE user_id = ?",nickName,user_id);
+    public int updateUser(UserInfo user) {
+    	String userId = user.getUserId();
+    	String department = user.getDepartment();
+    	String email = user.getEmail();
+    	String password = user.getPassword();
+    	String phone = user.getPhone();
+    	String userName = user.getUserName();
+    	if(userId.isEmpty()) {
+    		return 0;
+    	}else {
+    		String strSql = "UPDATE hackforgood_development.user SET ";
+    		Map<String,Object> map = EntityUtils.entityToMap(user);
+    		for (Map.Entry<String,Object> entry : map.entrySet()) {
+        		String value = entry.getValue()==null?"":entry.getValue().toString();
+        		String key = entry.getKey();
+        		if(!("serialVersionUID".equals(key)) && (value.length() > 0)) {
+        			strSql += key + " = " + "\"" + value + "\","; 
+        		}
+    		}
+    		strSql = strSql.substring(0, strSql.length()-1);
+    		strSql = strSql + " where userId = " + "\"" + userId + "\""; 
+    		return jdbcTemplate.update(strSql);
+    	}
+        
     }
 
     @Override
-    public void deleteUserByUserId(Integer id) {
-        jdbcTemplate.update("DELETE FROM hackforgood_development.user WHERE userId = ?",id);
+    public int deleteUserByUserId(String id) {
+        return jdbcTemplate.update("DELETE FROM hackforgood_development.user WHERE userId = ?",id);
     }
 }
