@@ -23,11 +23,11 @@ public class UserService {
         return userInfoMapper.getUser(user);
     }
 
-    public void updateUser(String user_id, String nickName) {
-        userInfoMapper.updateUser(user_id,nickName);
+    public int updateUser(UserInfo user) {
+        return userInfoMapper.updateUser(user);
     }
 
-    public void deleteUserByUserId(Integer id) {
-        userInfoMapper.deleteUserByUserId(id);
+    public int deleteUserByUserId(String id) {
+        return userInfoMapper.deleteUserByUserId(id);
     }
 }
