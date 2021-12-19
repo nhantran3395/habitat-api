@@ -30,4 +30,8 @@ public class UserService {
     public int deleteUserByUserId(String id) {
         return userInfoMapper.deleteUserByUserId(id);
     }
+    
+    public UserInfo login(UserInfo user) {
+    	return userInfoMapper.login(user);
+    }
 }
