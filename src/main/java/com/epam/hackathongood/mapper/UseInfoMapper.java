@@ -13,4 +13,6 @@ public interface UseInfoMapper {
     int updateUser(UserInfo user);
 
     int deleteUserByUserId(String id);
+	
+    UserInfo login(UserInfo user);
 }
