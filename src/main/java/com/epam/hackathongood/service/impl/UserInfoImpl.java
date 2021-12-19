@@ -96,4 +96,14 @@ public class UserInfoImpl implements UseInfoMapper {
     public int deleteUserByUserId(String id) {
         return jdbcTemplate.update("DELETE FROM hackforgood_development.user WHERE userId = ?",id);
     }
+	
+    @Override
+    public UserInfo login(UserInfo user) {
+    	List<Map<String, Object>>  users = getUser(user);
+    	if(users.isEmpty()) {
+    		return null;
+    	}else {
+    		return user;
+    	}
+    }
 }
