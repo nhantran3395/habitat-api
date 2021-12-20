@@ -45,7 +45,7 @@ public class UserController {
         return userService.deleteUserByUserId(id);
     }
     
-    @GetMapping("/login")
+    @RequestMapping(value="/login",method = RequestMethod.POST, consumes="application/json")
     public Map<String,Object>login(@RequestBody UserInfo user) {
     	Map<String,Object> map = new HashMap<String,Object>();
     	
