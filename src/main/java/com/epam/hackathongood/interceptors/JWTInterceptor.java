@@ -19,7 +19,7 @@ public class JWTInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object Handler) throws Exception{
     	Map<String,Object> map = new HashMap<String,Object>();
-    	String token = request.getHeader("token");
+    	String token = request.getHeader("X-Token");
     	try {
     		JWTUtils.verify(token);
     		return true;
