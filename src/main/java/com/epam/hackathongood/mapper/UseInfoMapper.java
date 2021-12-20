@@ -10,7 +10,9 @@ public interface UseInfoMapper {
 
 	List<Map<String, Object>> getUser(UserInfo user);
 
-    void updateUser(String user_id, String nickName);
+    int updateUser(UserInfo user);
 
-    void deleteUserByUserId(Integer id);
+    int deleteUserByUserId(String id);
+	
+    UserInfo login(UserInfo user);
 }
